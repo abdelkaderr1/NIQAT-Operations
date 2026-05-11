@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>تقفيلة NIQAT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Cairo+Play:wght@700;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:        #0a0e1a;
+  --bg2:       #111827;
+  --bg3:       #1a2235;
+  --card:      #141c2e;
+  --border:    rgba(99,179,237,0.15);
+  --border2:   rgba(99,179,237,0.3);
+  --accent:    #38bdf8;
+  --accent2:   #818cf8;
+  --gold:      #f59e0b;
+  --green:     #10b981;
+  --red:       #f87171;
+  --text:      #e2e8f0;
+  --text2:     #94a3b8;
+  --text3:     #64748b;
+  --radius:    12px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.18; pointer-events: none; z-index: 0; animation: float 8s ease-in-out infinite; }
+.orb1 { width: 400px; height: 400px; background: var(--accent); top: -100px; right: -100px; animation-delay: 0s; }
+.orb2 { width: 300px; height: 300px; background: var(--accent2); bottom: -80px; left: -80px; animation-delay: 3s; }
+.orb3 { width: 200px; height: 200px; background: var(--gold); top: 50%; left: 30%; animation-delay: 5s; }
+@keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-20px) scale(1.05)} }
+.wrapper { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.header { text-align: center; margin-bottom: 2rem; animation: slideDown 0.6s ease both; }
+.logo-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56,189,248,0.08); border: 1px solid var(--border2); border-radius: 50px; padding: 6px 18px; font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; }
+.logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(0.8)} }
+h1 { font-family: 'Cairo Play', sans-serif; font-size: clamp(1.6rem,5vw,2.4rem); font-weight: 900; background: linear-gradient(135deg,#e2e8f0 0%,var(--accent) 50%,var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; margin-bottom: 0.5rem; }
+.subtitle { font-size: 13px; color: var(--text3); }
+@keyframes slideDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; animation: fadeUp 0.5s ease both; transition: border-color 0.3s; }
+.card:hover { border-color: var(--border2); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.card:nth-child(2){animation-delay:0.08s} .card:nth-child(3){animation-delay:0.16s} .card:nth-child(4){animation-delay:0.24s} .card:nth-child(5){animation-delay:0.32s}
+.card-title { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.card-title::after { content:''; flex:1; height:1px; background:linear-gradient(to left,transparent,var(--border2)); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 12px; color: var(--text2); font-weight: 600; }
+.field input { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: 'Cairo',sans-serif; font-size: 14px; padding: 10px 12px; text-align: right; direction: ltr; outline: none; transition: border-color 0.2s,box-shadow 0.2s; width: 100%; }
+.field input[type="text"]{direction:rtl}
+.field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56,189,248,0.12); }
+.field input::placeholder { color: var(--text3); font-size: 13px; }
+.calc-btn { width: 100%; margin-top: 12px; padding: 13px; background: linear-gradient(135deg,var(--accent),var(--accent2)); border: none; border-radius: var(--radius-sm); color: #fff; font-family: 'Cairo',sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.2s,transform 0.15s,box-shadow 0.2s; box-shadow: 0 4px 20px rgba(56,189,248,0.25); }
+.calc-btn:hover{opacity:0.92;transform:translateY(-1px);box-shadow:0 6px 25px rgba(56,189,248,0.35)}
+.calc-btn:active{transform:scale(0.98)}
+.metric-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+@media(max-width:480px){.metric-grid{grid-template-columns:repeat(2,1fr)}}
+.metric { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; transition: border-color 0.3s,transform 0.2s; }
+.metric:hover{border-color:var(--border2);transform:translateY(-2px)}
+.metric-label{font-size:11px;color:var(--text3);margin-bottom:5px;line-height:1.3}
+.metric-value{font-size:15px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.metric-value.blue{color:var(--accent)} .metric-value.green{color:var(--green)} .metric-value.gold{color:var(--gold)} .metric-value.purple{color:var(--accent2)}
+.active-tier-banner { display:none; align-items:center; gap:10px; background:rgba(56,189,248,0.07); border:1px solid rgba(56,189,248,0.25); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:1rem; font-size:13px; color:var(--accent); font-weight:600; }
+.active-tier-banner.show{display:flex;animation:fadeUp 0.3s ease}
+.team-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;direction:rtl;min-width:420px}
+thead th{font-size:11px;font-weight:700;color:var(--text3);padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);letter-spacing:0.05em;text-transform:uppercase}
+tbody tr{border-bottom:1px solid rgba(99,179,237,0.07);transition:background 0.2s}
+tbody tr:hover{background:rgba(56,189,248,0.03)}
+tbody td{font-size:13px;padding:10px 10px;color:var(--text);text-align:right;vertical-align:middle}
+.name-cell{display:flex;align-items:center;gap:8px}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.av-team{background:rgba(16,185,129,0.15);color:var(--green);border:1px solid rgba(16,185,129,0.3)}
+.av-mgr{background:rgba(56,189,248,0.15);color:var(--accent);border:1px solid rgba(56,189,248,0.3)}
+.due-val{font-weight:700;font-size:13px}
+.paid-input{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:'Cairo',sans-serif;font-size:13px;padding:6px 10px;text-align:right;direction:ltr;outline:none;width:110px;transition:border-color 0.2s,box-shadow 0.2s}
+.paid-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,0.12)}
+.rem-pos{color:var(--green);font-weight:700} .rem-neg{color:var(--red);font-weight:700} .rem-done{color:var(--green);font-weight:700} .rem-dash{color:var(--text3)}
+.empty-msg{text-align:center;color:var(--text3);padding:2rem;font-size:13px}
+.bottom-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;justify-content:flex-end}
+.sec-btn{background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text2);font-family:'Cairo',sans-serif;font-size:13px;padding:8px 16px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.sec-btn:hover{border-color:var(--border2);color:var(--text);background:var(--bg3)}
+
+/* sync status */
+.sync-bar{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3);margin-bottom:1rem;justify-content:flex-end}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0;transition:background 0.3s}
+.sync-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.sync-dot.syncing{background:var(--gold);animation:pulse 1s infinite}
+.sync-dot.err{background:var(--red)}
+
+/* history panel */
+.history-list{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto}
+.history-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;cursor:pointer;transition:border-color 0.2s,background 0.2s;display:flex;justify-content:space-between;align-items:center}
+.history-item:hover{border-color:var(--border2);background:var(--bg3)}
+.history-month{font-size:13px;font-weight:700;color:var(--text)}
+.history-net{font-size:12px;color:var(--accent)}
+.history-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:2px 6px;border-radius:4px}
+.history-del:hover{color:var(--red)}
+.no-history{text-align:center;color:var(--text3);padding:1.5rem;font-size:13px}
+
+/* toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:var(--green);color:#fff;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:10px 22px;border-radius:50px;z-index:999;opacity:0;transition:all 0.35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err-toast{background:var(--red)}
+
+::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="toast" id="toast"></div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-badge"><div class="logo-dot"></div>NIQAT Operations</div>
+    <h1>تقفيلة الحسابات الشهرية</h1>
+    <p class="subtitle">نظام الكومشن والمدفوعات — الفريق</p>
+  </div>
+
+  <!-- Sync bar -->
+  <div class="sync-bar">
+    <span id="sync-text">جاري الاتصال...</span>
+    <div class="sync-dot" id="sync-dot"></div>
+  </div>
+
+  <!-- Inputs -->
+  <div class="card">
+    <div class="card-title">📋 بيانات الشهر</div>
+    <div class="form-grid">
+      <div class="field" style="grid-column:span 2">
+        <label>الشهر / السنة</label>
+        <input type="text" id="month" placeholder="مثال: أبريل 2026" />
+      </div>
+      <div class="field">
+        <label>المبيعات بالجنيه (EGP)</label>
+        <input type="number" id="salesEGP" placeholder="0" />
+      </div>
+      <div class="field">
+        <label>المبيعات بالدولار (USD)</label>
+        <input type="number" id="salesUSD" placeholder="0" />
+      </div>
+      <div class="field">
+        <label>سعر صرف الدولار</label>
+        <input type="number" id="rate" placeholder="44" />
+      </div>
+      <div class="field">
+        <label>الريفند (جنيه)</label>
+        <input type="number" id="refund" placeholder="0" />
+      </div>
+      <div class="field" style="grid-column:span 2">
+        <label>نسبة عبدالقادر الإضافية %</label>
+        <input type="number" id="mgrPct" value="1" min="0" max="100" step="0.1" />
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">⚡ احسب وحفّظ</button>
+  </div>
+
+  <!-- Results -->
+  <div class="card">
+    <div class="card-title">📊 نتائج التقفيلة</div>
+    <div class="active-tier-banner" id="tier-banner">
+      <span>🎯</span><span id="tier-banner-text">—</span>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">USD محوّل لجنيه</div><div class="metric-value" id="r-usd">—</div></div>
+      <div class="metric"><div class="metric-label">إجمالي المبيعات</div><div class="metric-value blue" id="r-total">—</div></div>
+      <div class="metric"><div class="metric-label">صافي بعد الريفند</div><div class="metric-value green" id="r-net">—</div></div>
+      <div class="metric"><div class="metric-label">نسبة الكومشن</div><div class="metric-value purple" id="r-pct">—</div></div>
+      <div class="metric"><div class="metric-label">إجمالي الكومشن</div><div class="metric-value" id="r-comm">—</div></div>
+      <div class="metric"><div class="metric-label">نصيب كل فرد</div><div class="metric-value blue" id="r-per">—</div></div>
+      <div class="metric"><div class="metric-label">نسبة عبدالقادر +</div><div class="metric-value" id="r-mgr1">—</div></div>
+      <div class="metric"><div class="metric-label">إجمالي عبدالقادر</div><div class="metric-value gold" id="r-mgr">—</div></div>
+      <div class="metric"><div class="metric-label">إجمالي المطلوب</div><div class="metric-value blue" id="r-grand">—</div></div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="card">
+    <div class="card-title">👥 المدفوعات والمتبقي</div>
+    <div class="team-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الاسم</th><th>المستحق</th><th>المدفوع</th><th>المتبقي</th>
+          </tr>
+        </thead>
+        <tbody id="team-body">
+          <tr><td colspan="4" class="empty-msg">اضغط «احسب وحفّظ» لتظهر بيانات الفريق</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bottom-actions">
+      <button class="sec-btn" onclick="updateAll()">🔄 تحديث المتبقي</button>
+      <button class="sec-btn" onclick="resetForm()">🗑 تفريغ الفورم</button>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="card">
+    <div class="card-title">📁 سجل الشهور السابقة</div>
+    <div class="history-list" id="history-list">
+      <div class="no-history">لا يوجد سجل بعد</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, collection, getDocs, deleteDoc, onSnapshot }
+  from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9c1z2VcRLrqyF4mBdcgp-fy1STYmAVuU",
+  authDomain: "niqat-operations.firebaseapp.com",
+  projectId: "niqat-operations",
+  storageBucket: "niqat-operations.firebasestorage.app",
+  messagingSenderId: "693019128325",
+  appId: "1:693019128325:web:5570ac6b1c75529fdb626c",
+  measurementId: "G-W41JCV8BHM"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+const TEAM = [
+  { id:'mohamed',     name:'محمد',       initials:'مح', isMgr:false },
+  { id:'qadri',       name:'قدري',        initials:'قد', isMgr:false },
+  { id:'amr',         name:'عمرو',        initials:'عم', isMgr:false },
+  { id:'mahmoud',     name:'محمود',       initials:'مح', isMgr:false },
+  { id:'ahmed',       name:'أحمد سيد',   initials:'أس', isMgr:false },
+  { id:'abdelkader',  name:'عبدالقادر',  initials:'عق', isMgr:true  },
+];
+const TIERS = [
+  { min:0,       max:1000000,  pct:4,  label:'شريحة 4% — أقل من مليون' },
+  { min:1000000, max:2000000,  pct:6,  label:'شريحة 6% — مليون إلى 2 مليون' },
+  { min:2000000, max:3000000,  pct:8,  label:'شريحة 8% — 2 مليون إلى 3 مليون' },
+  { min:3000000, max:Infinity, pct:10, label:'شريحة 10% — فوق 3 مليون 🏆' },
+];
+
+let state = { perPerson:0, mgrTotal:0, calculated:false, paid:{}, currentMonthKey:'' };
+
+function el(id){ return document.getElementById(id); }
+function fmt(n){ return Math.round(n).toLocaleString('ar-EG')+' ج'; }
+function getTierIdx(net){ for(let i=TIERS.length-1;i>=0;i--){ if(net>=TIERS[i].min) return i; } return 0; }
+
+function setSyncStatus(status){
+  const dot=el('sync-dot'), txt=el('sync-text');
+  if(status==='ok'){ dot.className='sync-dot ok'; txt.textContent='متزامن ✓'; }
+  else if(status==='syncing'){ dot.className='sync-dot syncing'; txt.textContent='جاري الحفظ...'; }
+  else if(status==='err'){ dot.className='sync-dot err'; txt.textContent='خطأ في الاتصال'; }
+  else { dot.className='sync-dot'; txt.textContent='غير متصل'; }
+}
+
+let toastTimer;
+function showToast(msg, isErr=false){
+  const t=el('toast');
+  t.textContent=msg;
+  t.className='toast'+(isErr?' err-toast':'')+' show';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{ t.className='toast'+(isErr?' err-toast':''); },2500);
+}
+
+/* ── CALCULATE ── */
+window.calculate = async function(){
+  const egp    = parseFloat(el('salesEGP').value)||0;
+  const usd    = parseFloat(el('salesUSD').value)||0;
+  const rate   = parseFloat(el('rate').value)||0;
+  const refund = parseFloat(el('refund').value)||0;
+  const mgrPct = parseFloat(el('mgrPct').value)||0;
+  const month  = el('month').value.trim();
+
+  if(!month){ showToast('اكتب اسم الشهر أولاً', true); return; }
+
+  const usdEGP    = usd*rate;
+  const total     = egp+usdEGP;
+  const net       = total-refund;
+  const tierIdx   = getTierIdx(net);
+  const tierPct   = TIERS[tierIdx].pct;
+  const comm      = net*(tierPct/100);
+  const perPerson = comm/6;
+  const mgr1      = net*(mgrPct/100);
+  const mgrTotal  = perPerson+mgr1;
+  const grand     = comm+mgr1;
+
+  state.perPerson = perPerson;
+  state.mgrTotal  = mgrTotal;
+  state.calculated= true;
+  state.currentMonthKey = month.replace(/\s+/g,'-');
+
+  el('r-usd').textContent   = fmt(usdEGP);
+  el('r-total').textContent = fmt(total);
+  el('r-net').textContent   = fmt(net);
+  el('r-pct').textContent   = tierPct+'%';
+  el('r-comm').textContent  = fmt(comm);
+  el('r-per').textContent   = fmt(perPerson);
+  el('r-mgr1').textContent  = fmt(mgr1);
+  el('r-mgr').textContent   = fmt(mgrTotal);
+  el('r-grand').textContent = fmt(grand);
+
+  el('tier-banner-text').textContent = TIERS[tierIdx].label;
+  el('tier-banner').className = 'active-tier-banner show';
+
+  // load existing paid from cloud for this month
+  try {
+    const snap = await getDoc(doc(db,'months', state.currentMonthKey));
+    if(snap.exists()) state.paid = snap.data().paid||{};
+    else state.paid = {};
+  } catch(e){ state.paid={}; }
+
+  buildTable();
+  await saveToCloud({ egp, usd, rate, refund, mgrPct, month, net, perPerson, mgrTotal, grand, tierPct });
+}
+
+/* ── SAVE ── */
+async function saveToCloud(data){
+  setSyncStatus('syncing');
+  try {
+    await setDoc(doc(db,'months', state.currentMonthKey), {
+      ...data,
+      paid: state.paid,
+      updatedAt: new Date().toISOString()
+    });
+    setSyncStatus('ok');
+    showToast('✓ تم الحفظ في السحابة');
+    loadHistory();
+  } catch(e){
+    setSyncStatus('err');
+    showToast('خطأ في الحفظ', true);
+  }
+}
+
+/* ── SAVE PAID ── */
+async function savePaid(){
+  if(!state.currentMonthKey) return;
+  setSyncStatus('syncing');
+  try {
+    const ref = doc(db,'months', state.currentMonthKey);
+    const snap = await getDoc(ref);
+    if(snap.exists()){
+      await setDoc(ref, { ...snap.data(), paid: state.paid, updatedAt: new Date().toISOString() });
+    }
+    setSyncStatus('ok');
+    showToast('✓ تم حفظ المدفوعات');
+  } catch(e){
+    setSyncStatus('err');
+    showToast('خطأ في الحفظ', true);
+  }
+}
+
+/* ── BUILD TABLE ── */
+function buildTable(){
+  const tbody = el('team-body');
+  tbody.innerHTML='';
+  TEAM.forEach(m=>{
+    const due  = m.isMgr ? state.mgrTotal : state.perPerson;
+    const paid = state.paid[m.id]||0;
+    const tr   = document.createElement('tr');
+    tr.innerHTML=`
+      <td><div class="name-cell">
+        <div class="avatar ${m.isMgr?'av-mgr':'av-team'}">${m.initials}</div>
+        <span>${m.name}</span>
+      </div></td>
+      <td><span class="due-val">${fmt(due)}</span></td>
+      <td><input class="paid-input" type="number" id="paid-${m.id}"
+        value="${paid||''}" placeholder="0" min="0"
+        oninput="onPaid('${m.id}',${due})" /></td>
+      <td id="rem-${m.id}" class="rem-dash">—</td>`;
+    tbody.appendChild(tr);
+    if(paid>0) updateRow(m.id, due);
+  });
+}
+
+window.onPaid = function(id, due){
+  const val = parseFloat(el('paid-'+id).value)||0;
+  state.paid[id] = val;
+  updateRow(id, due);
+  clearTimeout(window._saveTimer);
+  window._saveTimer = setTimeout(savePaid, 1200);
+};
+
+function updateRow(id, due){
+  const paid = parseFloat(el('paid-'+id).value)||0;
+  const rem  = due-paid;
+  const cell = el('rem-'+id);
+  if(rem>0.5){      cell.className='rem-pos'; cell.textContent=fmt(rem)+' متبقي'; }
+  else if(rem<-0.5){ cell.className='rem-neg'; cell.textContent='+ '+fmt(Math.abs(rem))+' زيادة'; }
+  else {             cell.className='rem-done'; cell.textContent='✓ مكتمل'; }
+}
+
+window.updateAll = function(){
+  if(!state.calculated) return;
+  TEAM.forEach(m=>{ updateRow(m.id, m.isMgr?state.mgrTotal:state.perPerson); });
+};
+
+/* ── LOAD HISTORY ── */
+async function loadHistory(){
+  try {
+    const snap = await getDocs(collection(db,'months'));
+    const list = el('history-list');
+    if(snap.empty){ list.innerHTML='<div class="no-history">لا يوجد سجل بعد</div>'; return; }
+    const docs = [];
+    snap.forEach(d=>docs.push({id:d.id,...d.data()}));
+    docs.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt));
+    list.innerHTML='';
+    docs.forEach(d=>{
+      const item=document.createElement('div');
+      item.className='history-item';
+      item.innerHTML=`
+        <div>
+          <div class="history-month">${d.month||d.id}</div>
+          <div class="history-net">صافي: ${fmt(d.net||0)} — كومشن: ${d.tierPct||'?'}%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="history-del" onclick="deleteMonth('${d.id}',event)">🗑</button>
+        </div>`;
+      item.addEventListener('click', ()=>loadMonth(d));
+      list.appendChild(item);
+    });
+  } catch(e){ console.error(e); }
+}
+
+/* ── LOAD MONTH FROM HISTORY ── */
+window.loadMonth = function(d){
+  el('month').value   = d.month||d.id;
+  el('salesEGP').value= d.egp||0;
+  el('salesUSD').value= d.usd||0;
+  el('rate').value    = d.rate||0;
+  el('refund').value  = d.refund||0;
+  el('mgrPct').value  = d.mgrPct||1;
+  window.calculate();
+};
+
+/* ── DELETE MONTH ── */
+window.deleteMonth = async function(id, e){
+  e.stopPropagation();
+  if(!confirm('هتحذف شهر '+id+' نهائياً. متأكد؟')) return;
+  try {
+    await deleteDoc(doc(db,'months',id));
+    showToast('تم الحذف');
+    loadHistory();
+    if(state.currentMonthKey===id) resetForm();
+  } catch(e){ showToast('خطأ في الحذف',true); }
+};
+
+/* ── RESET FORM ── */
+window.resetForm = function(){
+  ['salesEGP','salesUSD','rate','refund','month'].forEach(id=>{ el(id).value=''; });
+  el('mgrPct').value='1';
+  ['r-usd','r-total','r-net','r-pct','r-comm','r-per','r-mgr1','r-mgr','r-grand'].forEach(id=>{ el(id).textContent='—'; });
+  el('tier-banner').className='active-tier-banner';
+  el('team-body').innerHTML='<tr><td colspan="4" class="empty-msg">اضغط «احسب وحفّظ» لتظهر بيانات الفريق</td></tr>';
+  state={perPerson:0,mgrTotal:0,calculated:false,paid:{},currentMonthKey:''};
+};
+
+/* ── INIT ── */
+setSyncStatus('syncing');
+try {
+  onSnapshot(collection(db,'months'), ()=>{ setSyncStatus('ok'); loadHistory(); });
+} catch(e){ setSyncStatus('err'); }
+loadHistory();
+
+</script>
+</body>
+</html>
